@@ -1,4 +1,5 @@
 #lang racket
+(require typed/racket)
 
 ;; Question:
 ;; Pack consecutive duplicates of list elements into sublists.
@@ -14,4 +15,8 @@
                          [(or (empty? y) (not (equal? x (first (first y))))) (cons (list x) y)]
                          [else (cons (cons x (first y)) (rest y))])) empty lst))
 
-(provide pack)
+;; Tests
+(assert (equal? (pack '()) '()))
+(assert (equal? (pack '(() () ())) '((() () ()))))
+(assert (equal? (pack '(a 1 1 1 a 1 1)) '((a) (1 1 1) (a) (1 1))))
+(assert (equal? (pack '(a a a a b c c a a d e e e e)) '((a a a a) (b) (c c) (a a) (d) (e e e e))))

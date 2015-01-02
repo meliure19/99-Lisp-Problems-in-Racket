@@ -1,4 +1,5 @@
 #lang racket
+(require typed/racket)
 
 ;; Question:
 ;;  Find the K'th element of a list.
@@ -15,4 +16,7 @@
       [else (element-at/helper (rest lst) (add1 i))]))
   (element-at/helper lst 1))
 
-(provide element-at)
+;; Tests
+(assert (equal? (element-at '(a b) 1) 'a))
+(assert (equal? (element-at '(a b c d e) 3) 'c))
+(assert (equal? (element-at '(a b c d e f) 6) 'f))

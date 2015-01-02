@@ -1,4 +1,5 @@
 #lang racket
+(require typed/racket)
 
 ;; Question:
 ;; Eliminate consecutive duplicates of list elements.
@@ -16,4 +17,8 @@
                          [(equal? x (first y)) y]
                          [else (cons x y)])) empty lst))
 
-(provide compress)
+;; Tests
+(assert (equal? (compress '()) '()))
+(assert (equal? (compress '(() () ())) '(())))
+(assert (equal? (compress '(a 1 1 1 a 1 1)) '(a 1 a 1)))
+(assert (equal? (compress '(a a a a b c c a a d e e e e)) '(a b c a d e)))

@@ -1,4 +1,5 @@
 #lang racket
+(require typed/racket)
 
 ;; Question:
 ;;   Run-length encoding of a list (direct solution).
@@ -25,4 +26,8 @@
     [(equal? (length (first lst)) 1) (cons (first (first lst)) (rest lst))]
     [else (cons (list (length (first lst)) (first (first lst))) (rest lst))]))
 
-(provide encode-direct)
+;; Tests
+(assert (equal? (encode-direct '()) '()))
+(assert (equal? (encode-direct '(() () ())) '((3 ()))))
+(assert (equal? (encode-direct '(a 1 1 1 a 1 1)) '(a (3 1) a (2 1))))
+(assert (equal? (encode-direct '(a a a a b c c a a d e e e e)) '((4 a) b (2 c) (2 a) d (4 e))))

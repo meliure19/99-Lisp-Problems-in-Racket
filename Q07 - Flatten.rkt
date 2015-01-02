@@ -1,4 +1,5 @@
 #lang racket
+(require typed/racket)
 
 ;; Question:
 ;;   Flatten a nested list structure.
@@ -14,4 +15,8 @@
     [(list? (first lst)) (append (my-flatten (first lst)) (my-flatten (rest lst)))]
     [else (cons (first lst) (my-flatten (rest lst)))]))
 
-(provide my-flatten)
+;; Tests
+(assert (equal? (my-flatten '()) '()))
+(assert (equal? (my-flatten '((a) ())) '(a)))
+(assert (equal? (my-flatten '(() ((()) ((())) ()))) '()))
+(assert (equal? (my-flatten '(a (b (c d) e))) '(a b c d e)))

@@ -1,4 +1,5 @@
 #lang racket
+(require typed/racket)
 
 ;; Question:
 ;;  Decode a run-length encoded list. Given a run-length code list 
@@ -14,4 +15,8 @@
    [(list? element) (build-list (first element) (lambda (x) (second element)))]
    [else (list element)]))
 
-(provide decode)
+;; Tests
+(assert (equal? (decode '()) '()))
+(assert (equal? (decode '((3 ()))) '(() () ())))
+(assert (equal? (decode '(a (3 1) a (2 1))) '(a 1 1 1 a 1 1)))
+(assert (equal? (decode '((4 a) b (2 c) (2 a) d (4 e))) '(a a a a b c c a a d e e e e)))

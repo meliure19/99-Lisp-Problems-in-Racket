@@ -1,4 +1,5 @@
 #lang racket
+(require typed/racket)
 
 ;; Question:
 ;; Drop every N'th element from a list.
@@ -19,4 +20,11 @@
   
   (drop-helper lst n))
 
-(provide drop-element)
+;; Tests
+(assert (equal? (drop-element '() 5) '()))
+(assert (equal? (drop-element '() -1) '()))
+(assert (equal? (drop-element '(a) 1) '()))
+(assert (equal? (drop-element '(a) 2) '(a)))
+(assert (equal? (drop-element '(a b c d e f g h i k) 1) '()))
+(assert (equal? (drop-element '(a b c d e f g h i k) 2) '(a c e g i)))
+(assert (equal? (drop-element '(a b c d e f g h i k) 3) '(a b d e g h k)))

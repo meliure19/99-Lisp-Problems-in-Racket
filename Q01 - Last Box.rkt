@@ -1,4 +1,5 @@
 #lang racket
+(require typed/racket)
 
 ;; Question:
 ;;   Find the last box of a list.
@@ -12,4 +13,7 @@
     [(or (empty? lst) (empty? (rest lst))) lst]
     [else (my-last (rest lst))]))
 
-(provide my-last)
+;; Tests
+(assert (equal? (my-last `(a b c d)) `(d)))
+(assert (equal? (my-last `(1 2 3 4)) `(4)))
+(assert (equal? (my-last `((a b) (c d))) `((c d))))
