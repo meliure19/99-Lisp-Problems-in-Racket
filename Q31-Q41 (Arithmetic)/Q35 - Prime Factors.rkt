@@ -6,7 +6,7 @@
 ;; Construct a flat list containing the prime factors in ascending order.
 ;;   Example:
 ;;    (prime-factors 315)
-;; => (3 3 5 7)
+;; => '(3 3 5 7)
 ;;
 
 (define (prime-factors x)
